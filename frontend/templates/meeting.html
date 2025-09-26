@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ meeting.filename }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="container py-4">
+  <h1>{{ meeting.filename }}</h1>
+
+  <h3 class="mt-4">📝 Summary</h3>
+  <p>{{ meeting.summary }}</p>
+
+  <h3 class="mt-4">😊 Sentiment</h3>
+  <p>{{ meeting.sentiment }}</p>
+
+  <h3 class="mt-4">🏷 Topics</h3>
+  <p>{{ meeting.topics }}</p>
+
+  <h3 class="mt-4">📜 Transcript</h3>
+  <pre class="bg-light p-3">{{ meeting.transcript }}</pre>
+
+  <!-- Example Chart -->
+  <h3 class="mt-5">📊 Sentiment Analysis Chart</h3>
+  <canvas id="sentimentChart"></canvas>
+  <script>
+    const ctx = document.getElementById('sentimentChart');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Positive', 'Neutral', 'Negative'],
+        datasets: [{
+          label: 'Sentiment',
+          data: [70, 20, 10], // example numbers
+          backgroundColor: ['#4caf50', '#ffeb3b', '#f44336']
+        }]
+      }
+    });
+  </script>
+
+  <a href="/" class="btn btn-secondary mt-3">⬅ Back</a>
+</body>
+</html>
